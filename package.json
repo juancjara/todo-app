@@ -1,0 +1,23 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "simple todo app",
+  "main": "parser.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juancjara/todo-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juancjara/todo-app/issues"
+  },
+  "homepage": "https://github.com/juancjara/todo-app#readme",
+  "dependencies": {
+    "chai": "^3.0.0",
+    "mocha": "^2.2.5"
+  }
+}

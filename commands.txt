@@ -1,0 +1,23 @@
+add -t "task 1"
+
+- tasks
+
+add -t [taskName]
+add -t [taskName] -d [description]
+del -t [taskName]
+edit -t [taskName] [new name]
+done [taskName]
+mv -t [colName] [0,1]
+
+- description
+
+add -d [taskName] [description]
+edit -d [taskName] [description]
+
+
+
+- column
+
+add -c [colName]
+del -c [colName]
+mv -c [colName] [0,1]
