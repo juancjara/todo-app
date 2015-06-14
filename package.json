@@ -4,6 +4,7 @@
   "description": "simple todo app",
   "main": "parser.js",
   "scripts": {
+    "watch": "watchify client/app.js -o public/js/bundle.js -v",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +18,25 @@
   },
   "homepage": "https://github.com/juancjara/todo-app#readme",
   "dependencies": {
+    "browserify": "^10.2.4",
     "chai": "^3.0.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "node-getopt": "^0.2.3",
+    "reactify": "^1.1.1",
+    "reflux": "^0.2.7",
+    "yargs": "^3.10.0"
+  },
+  "devDependencies": {
+    "babelify": "^6.1.2",
+    "gulp": "^3.9.0",
+    "react": "^0.13.3",
+    "reactify": "^1.1.1",
+    "reflux": "^0.2.8",
+    "watchify": "^3.2.2"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
   }
 }

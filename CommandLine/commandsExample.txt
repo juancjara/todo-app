@@ -11,13 +11,10 @@ mv -t [colName] [0,1]
 
 - description
 
-add -d [taskName] [description]
-edit -d [taskName] [description]
+edit [taskName] -d [description]
 
+- group
 
-
-- column
-
-add -c [colName]
-del -c [colName]
-mv -c [colName] [0,1]
+add -g [colName]
+edit -g [colName] [new name]
+del -g [colName]
