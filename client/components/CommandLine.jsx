@@ -38,7 +38,8 @@ var CommandLine = React.createClass({
           <input 
             type = 'text' 
             value = {this.state.command}
-            onChange = {this.onChange} />
+            onChange = {this.onChange}
+            autoFocus = {true} />
         </form>
       </div>
     );

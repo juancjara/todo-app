@@ -17,6 +17,7 @@ var groups = [
 ];
 
 var GroupStore = Reflux.createStore({
+
   listenables: GroupActions,
 
   init: function() {
@@ -24,7 +25,8 @@ var GroupStore = Reflux.createStore({
   },
 
   onAdd: function(item) {
-    groups.push(item);
+    var pos = item.pos > -1 ? item.pos: groups.length;
+    groups.splice(pos, 0, item);
     this.trigger(groups);
   },
 
@@ -66,17 +68,3 @@ var GroupStore = Reflux.createStore({
 });
 
 module.exports = GroupStore;
-
-//save selected on task, notify group store when tasks are updated
-/*
-group -> save selected group
-
-function Tasks(){
-  var currentTasks = group.getActualTasks() ;
-  // modify tasks
-  udpateTask(currentTasks);
-}
-*/
-// i can call taks direclty
-// tasks.add because i know the current group
-

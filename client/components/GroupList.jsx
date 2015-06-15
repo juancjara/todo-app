@@ -35,8 +35,8 @@ var GroupList = React.createClass({
   },
 
   render: function() {
-    var groups = this.state.list.map(function(item) {
-      return <GroupItem name = {item.name} tasks = {item.tasks} />
+    var groups = this.state.list.map(function(item, i) {
+      return <GroupItem key = {i} name = {item.name} tasks = {item.tasks} />
     }.bind(this));
 
     return (

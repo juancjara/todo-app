@@ -8,7 +8,8 @@ var TaskStore = Reflux.createStore({
   listenables: TaskActions,
   
   onAdd: function(item) {
-    taskList.push(item);
+    var pos = item.pos > -1 ? item.pos: taskList.length;
+    taskList.splice(pos, 0, item);
     this.trigger(taskList);
   },
 
@@ -27,6 +28,11 @@ var TaskStore = Reflux.createStore({
       }
     })
 
+    this.trigger(taskList);
+  },
+
+  onMove: function(data) {
+    taskList[data.to] = taskList.splice(data.from, 1, taskList[data.to])[0];
     this.trigger(taskList);
   },
 

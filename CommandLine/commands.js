@@ -1,7 +1,8 @@
 function addTask(fields) {
   var item = {
     name: fields._[1],
-    description: fields.d
+    description: fields.d,
+    pos: fields.p
   }
   return {
     action: 'add',
@@ -34,7 +35,6 @@ function editTask(fields) {
   }
 
   if (fields._[2] === undefined) {
-    console.log('here');
     item.newName = item.name;
   }
 
@@ -45,17 +45,30 @@ function editTask(fields) {
   }
 }
 
+function moveTask(fields) {
+  return {
+    action: 'move',
+    type: 'task',
+    data: {
+      from: fields._[1],
+      to: fields._[2]
+    }
+  }
+}
+
 var taskCommands = {
   add: addTask,
   rm: removeTask,
   done: taskDone,
-  edit: editTask
+  edit: editTask,
+  move: moveTask
 }
 
 function addColumn(fields) {
   var data = {
     name: fields.c,
-    tasks: []
+    tasks: [],
+    pos: fields.p
   }
   return {
     action: 'add',
@@ -90,7 +103,7 @@ function execute(fields) {
   if (fields.c || fields._[0] === 'use') {
     return columnCommands[fields._[0]](fields);
   }
-
+  
   return taskCommands[fields._[0]](fields);
 }
 

@@ -19,24 +19,7 @@ var Task = React.createClass({
   }
 });
 
-var TaskList = React.createClass({
-/*
-  getInitialState: function() {
-    return {list: TaskStore.getInitialState()};
-  },
-
-  onTaskChange: function(status) {
-    this.setState({list: status});
-  },
-
-  componentDidMount: function() {
-    this.unsubscribe = TaskStore.listen(this.onTaskChange);
-  },
-
-  componentWillUnmountfunction: function() {
-    this.unsubscribe();
-  },*/
-  
+var TaskList = React.createClass({  
   render: function() {
 
     var tasks = this.props.tasks.map(function(item, i) {
