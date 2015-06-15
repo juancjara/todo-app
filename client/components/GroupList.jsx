@@ -6,15 +6,14 @@ var GroupItem = React.createClass({
 
   render: function() {
     return (
-      <div>
-        {this.props.name}
+      <div className = 'group same-line'>
+        <h3>{this.props.name}</h3>
         <TaskList tasks = {this.props.tasks} />
       </div>
     );
   }
 
 });
-
 
 var GroupList = React.createClass({
 

@@ -1,0 +1,26 @@
+#app {
+  overflow-x: auto;
+}
+
+.same-line {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.group {
+  min-width: 400px;
+}
+
+.group .selected h3{
+  color: yellow;
+}
+
+.command-line input{
+  font-size: 1.4em;
+  margin-top: 10px;
+  min-width: 400px;
+}
+
+.task {
+  margin: 10px 0px;
+}

@@ -29,10 +29,10 @@ var CommandLine = React.createClass({
     this.setState({command: e.target.value});
   },
 
-  render() {
+  render: function() {
     var logs = null;
     return (
-      <div>
+      <div className = 'command-line'>
         {logs}
         <form onSubmit = {this.onSubmit}>
           <input 

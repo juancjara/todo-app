@@ -7,12 +7,13 @@ var Task = React.createClass({
   render: function() {
     var task = this.props.item;
     return (
-      <div>
-        <input
+      <div className = 'task'>
+        <input 
+          className = 'same-line' 
           type = "checkbox"
           checked = {this.props.item.done}
           disabled />
-        <div>{task.name}</div>
+        <span>{task.name}</span>
         <div>{task.description}</div>
       </div>
     );

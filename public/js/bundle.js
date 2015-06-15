@@ -207,10 +207,10 @@ var CommandLine = React.createClass({displayName: "CommandLine",
     this.setState({command: e.target.value});
   },
 
-  render() {
+  render: function() {
     var logs = null;
     return (
-      React.createElement("div", null, 
+      React.createElement("div", {className: "command-line"}, 
         logs, 
         React.createElement("form", {onSubmit: this.onSubmit}, 
           React.createElement("input", {
@@ -235,15 +235,14 @@ var GroupItem = React.createClass({displayName: "GroupItem",
 
   render: function() {
     return (
-      React.createElement("div", null, 
-        this.props.name, 
+      React.createElement("div", {className: "group same-line"}, 
+        React.createElement("h3", null, this.props.name), 
         React.createElement(TaskList, {tasks: this.props.tasks})
       )
     );
   }
 
 });
-
 
 var GroupList = React.createClass({displayName: "GroupList",
 
@@ -307,12 +306,13 @@ var Task = React.createClass({displayName: "Task",
   render: function() {
     var task = this.props.item;
     return (
-      React.createElement("div", null, 
+      React.createElement("div", {className: "task"}, 
         React.createElement("input", {
+          className: "same-line", 
           type: "checkbox", 
           checked: this.props.item.done, 
           disabled: true}), 
-        React.createElement("div", null, task.name), 
+        React.createElement("span", null, task.name), 
         React.createElement("div", null, task.description)
       )
     );
@@ -382,6 +382,12 @@ var groups = [
       {name: 'task2', description: 'des2', done: false},
       {name: 'task3', description: 'des3', done: false}
     ]
+  },
+  {
+    name: 'group 2',
+    tasks: [
+      {name: 'task4', description: 'des4', done: false}
+    ]
   }  
 ];
 
@@ -441,6 +447,7 @@ module.exports = GroupStore;
 },{"../actions/GroupActions":5,"../actions/taskActions":6,"./taskStore":14,"reflux":182}],14:[function(require,module,exports){
 var Reflux = require('reflux');
 var TaskActions = require('../actions/taskActions');
+var utils = require('../../utils');
 
 var taskList = [];
 
@@ -455,6 +462,12 @@ var TaskStore = Reflux.createStore({
   },
 
   onRemove: function(name) {
+    if (utils.isNumber(name)) {
+      taskList.splice(name, 1);
+      this.trigger(taskList);
+      return;
+    }
+
     taskList = taskList.filter(function(e) {
       return e.name !== name;
     })
@@ -463,6 +476,12 @@ var TaskStore = Reflux.createStore({
   },
 
   onDone: function(name) {
+    if (utils.isNumber(name)) {
+      taskList[name].done = true;
+      this.trigger(taskList);
+      return;
+    }
+
     taskList.forEach(function(t) {
       if (t.name === name) {
         t.done = true;
@@ -478,10 +497,19 @@ var TaskStore = Reflux.createStore({
   },
 
   onEdit: function(data) {
+    var update = function udpate(elem, newData) {
+      elem.name = newData.newName;
+      elem.description = newData.description || elem.description;
+    }
+
+    if (utils.isNumber(data.name)) {
+      update(taskList[data.name], data)
+      this.trigger(taskList);
+    }
+
     taskList.forEach(function(t) {
       if (t.name === data.name) {
-        t.name = data.newName;
-        t.description = data.description || t.description;
+        update(t, data);
       }
     });
     
@@ -497,7 +525,7 @@ var TaskStore = Reflux.createStore({
 
 module.exports = TaskStore;
 
-},{"../actions/taskActions":6,"reflux":182}],15:[function(require,module,exports){
+},{"../../utils":222,"../actions/taskActions":6,"reflux":182}],15:[function(require,module,exports){
 
 },{}],16:[function(require,module,exports){
 // http://wiki.commonjs.org/wiki/Unit_Testing/1.0
@@ -26802,4 +26830,13 @@ module.exports = (function() {
   }
 })();
 }).call(this,require('_process'))
-},{"_process":23,"tty":24}]},{},[7]);
+},{"_process":23,"tty":24}],222:[function(require,module,exports){
+module.exports.getPosition = function(pos, defValue) {
+  return pos > -1? pos: defValue;
+}
+
+module.exports.isNumber = function(value) {
+  return typeof value === 'number';
+}
+
+},{}]},{},[7]);

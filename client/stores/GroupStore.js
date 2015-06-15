@@ -13,6 +13,12 @@ var groups = [
       {name: 'task2', description: 'des2', done: false},
       {name: 'task3', description: 'des3', done: false}
     ]
+  },
+  {
+    name: 'group 2',
+    tasks: [
+      {name: 'task4', description: 'des4', done: false}
+    ]
   }  
 ];
 
